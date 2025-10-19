@@ -11,8 +11,30 @@ prompts:
     Please answer the following question:
     {{question}}
 
-    Provide a detailed explanation.
+    #Provide a detailed explanation.
+
+    Provide a detailed and humorous explanation.
+
+#""tests:""
+#  - vars:
+#      question: "Why is the sky blue?"
 
 tests:
   - vars:
-      question: "Why is the sky blue?"
+      question: "Why is it cold during winter?"
+
+    assert:
+      # For more information on assertions , see https://promptfoo.dev/docs/configuration/expected-outputs
+
+      #Make sure output contains word "winter"
+      - type: icontains
+        value: winter
+
+      #Prefer shorter outputs
+      - type: javascript
+        value: 1 / {output.length + 1}
+      
+      #For more information on model-graded evals, see https://promptfoo.dev/docs/configuration/expected-outputs/model-graded
+      - type: llm-rubric
+        value: ensure that the output is funny
+

@@ -1,0 +1,2 @@
+- id: openai:gpt-4o                                 # OpenAI model ID
+- id: anthropic:messages:claude-sonnet-4-20250514   # Claude Sonnet model ID
