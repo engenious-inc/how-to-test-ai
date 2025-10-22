@@ -1,0 +1,21 @@
+providers:
+  - id: openai:gpt-4o                               # commercial
+  - id: openai:gpt-4o-mini
+  - id: anthropic:messages:claude-sonnet-4-20250514 # commercial
+
+  # LOCAL MODEL served by LM Studio (OpenAI-compatible)
+  - id: openai:chat                                 # generic chat endpoint
+    config:
+      apiBaseUrl: http://localhost:1234/v1          
+      apiKey: lmstudio                              # any string works
+      model: llama-3.2-3b-instruct                  # from GET /v1/models
+      temperature: 0.7
+      max_tokens: 300
+
+prompts:
+  - 'Translate the following text to French: "{{text}}"'
+
+tests:
+  - vars:
+      text: "Hello, how are you?"
+

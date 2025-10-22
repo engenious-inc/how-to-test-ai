@@ -1,6 +1,7 @@
 description: "Model-graded – llm-rubric (tweet under 50 words)"
 providers:
   - openai:gpt-4o-mini
+  - anthropic:messages:claude-sonnet-4-20250514
 
 prompts:
   - "Write a tweet announcing our new AI product."

@@ -1,0 +1,43 @@
+description: "Multiline prompt demo"
+
+providers:
+  - openai:gpt-4o  # OpenAI model ID
+  - anthropic:messages:claude-sonnet-4-20250514  # Claude Sonnet model ID
+
+prompts:
+  - label: "Story Creator Prompt"
+    raw: |
+      [
+        {
+          "role": "system",
+          "content": "You are a creative story generator for children. Write short, imaginative adventure stories that are magical, friendly, and age-appropriate. Always include emojis to make the story engaging and vivid. Stories should have a clear beginning, middle, and end — with a positive or inspiring message about courage, curiosity, or friendship. Keep the tone whimsical and gentle, like a bedtime story. Output the story as a complete, polished narrative."
+        },
+        {
+          "role": "user",
+          "content": "Create a magical adventure story in california and an image based on the following choices:\nCharacter name: {{character_name}}\nMagical item: {{magical_item}}\nPlace of adventure: {{place}}\nProblem to solve: {{problem}}\nStory ending: {{ending}}\n\nPlease use a friendly tone, include emojis, and make it feel like a bedtime story for children."
+        }
+      ]
+
+tests:
+  - vars:
+      character_name: "Augustina"
+      magical_item: "Magic Wand"
+      place: "Forest"
+      problem: "Finding a lost treasure"
+      ending: "Making new friends"
+    assert:
+      - type: answer-relevance
+        threshold: 0.8
+      - type: llm-rubric
+        value: "Response is fantasy and under 50 words."
+      - type: icontains
+        value: Augustina
+      - type: icontains
+        value: Magic Wand
+      - type: icontains
+        value: Forest
+      - type: icontains
+        value: Treasure
+      - type: icontains
+        value: Friends
+

@@ -1,0 +1,20 @@
+# API Keys and Secrets
+.env
+.env.local
+.env.*
+
+# Node modules (if you install anything with npm)
+node_modules/
+package-lock.json
+
+# VS Code project files 
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Other files

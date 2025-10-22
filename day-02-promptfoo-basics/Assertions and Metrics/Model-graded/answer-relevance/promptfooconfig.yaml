@@ -1,6 +1,8 @@
 description: "Model-graded – answer-relevance"
 providers:
   - openai:gpt-4o
+  - openai:gpt-4o-mini
+  - anthropic:messages:claude-sonnet-4-20250514
 
 prompts:
   - "Explain the process of photosynthesis in simple terms."
@@ -8,4 +10,16 @@ prompts:
 tests:
   - assert:
       - type: answer-relevance
-        threshold: 0.8          # require strong topical relevance
+        threshold: 0.8  # require strong topical relevance
+        
+  - assert:
+      - type: factuality
+        threshold: 0.6
+        value: "Photosynthesis is the process by which green plants, algae, and some bacteria use sunlight, carbon dioxide, and water to make their own food (glucose) and release oxygen"
+
+  - assert:
+      - type: llm-rubric
+        threshold: 0.7
+        value: "Response is under 50 words long and uses simple language"
+
+     

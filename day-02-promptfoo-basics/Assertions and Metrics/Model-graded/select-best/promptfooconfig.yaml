@@ -1,0 +1,32 @@
+description: "My eval"
+
+prompts:
+  - "Write a tweet about {{topic}}"
+  - "Write a concise, funny tweet about {{topic}}"
+  - "Compose a tweet about {{topic}} that will go viral"
+  
+
+providers:
+  - "openai:gpt-5-mini"
+  - "openai:gpt-4o-mini"
+  - "anthropic:messages:claude-sonnet-4-20250514"
+ 
+tests:
+  - vars:
+      topic: 'Artificial Intelligence'
+    assert:
+      - type: select-best
+        value: 'choose the tweet that is most likely to get high engagment on social media'
+
+  - vars:
+      topic: 'climate change'
+    assert:
+      - type: select-best
+        value: 'choose the tweet that best balances information and humor'
+
+  # - vars:
+  #     topic: new york city
+  #   assert:
+  #     - type: llm-rubric
+  #       value: ensure that the output is funny
+
